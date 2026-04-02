@@ -1,0 +1,9 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">#111111</item>
+        <item name="android:windowBackground">#111111</item> </style>
+
+    <style name="Theme.App.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">#111111</item> <item name="android:statusBarColor">#111111</item>
+    </style>
+</resources>

@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   Image,
   StyleSheet,
   useWindowDimensions,
-  TouchableOpacity, // ✅ Import this
+  TouchableOpacity,
 } from "react-native";
 
 interface JyverCardProps {
@@ -13,7 +13,7 @@ interface JyverCardProps {
   title1: string;
   title2: string;
   description: string;
-  onPress?: () => void; // ✅ Add this prop
+  onPress?: () => void;
 }
 
 const JyverCard = ({
@@ -26,8 +26,21 @@ const JyverCard = ({
   const { width } = useWindowDimensions();
   const cardWidth = width >= 600 ? width / 2 - 30 : width - 40;
 
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  const handlePress = () => {
+    if (isNavigating) return; 
+    setIsNavigating(true);
+    onPress?.();
+    setTimeout(() => setIsNavigating(false), 500); 
+  };
+
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.9}>
+    <TouchableOpacity
+      onPress={handlePress}
+      activeOpacity={0.9}
+      disabled={isNavigating} 
+    >
       <View style={[styles.card, { width: cardWidth }]}>
         <View style={styles.dotsContainer}>
           <View style={[styles.dot, { backgroundColor: "#ff5f56" }]} />
@@ -54,10 +67,10 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     maxWidth: "100%",
+    minHeight: 300,
     margin: 8,
     alignItems: "center",
-   shadowColor: "rgba(144, 238, 144, 0.19)",
-
+    shadowColor: "rgba(144, 238, 144, 0.19)",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 10,
