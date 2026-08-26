@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 interface CountdownTimerProps {
   expiresAt: Date;
   onExpire?: () => void;
-  warningThreshold?: number; // seconds - when to show warning color
+  warningThreshold?: number;
   color?: string;
   warningColor?: string;
   size?: 'small' | 'medium' | 'large';
@@ -14,7 +14,7 @@ interface CountdownTimerProps {
 export default function CountdownTimer({
   expiresAt,
   onExpire,
-  warningThreshold = 120, // 2 minutes default
+  warningThreshold = 120,
   color = '#666',
   warningColor = '#FF6B6B',
   size = 'medium',
@@ -28,7 +28,7 @@ export default function CountdownTimer({
       const expiry = new Date(expiresAt).getTime();
       const diff = Math.max(0, expiry - now);
 
-      setTimeRemaining(Math.floor(diff / 1000)); // Convert to seconds
+      setTimeRemaining(Math.floor(diff / 1000));
 
       if (diff === 0 && !isExpired) {
         setIsExpired(true);
@@ -36,10 +36,8 @@ export default function CountdownTimer({
       }
     };
 
-    // Calculate immediately
     calculateTimeRemaining();
 
-    // Update every second
     const interval = setInterval(calculateTimeRemaining, 1000);
 
     return () => clearInterval(interval);

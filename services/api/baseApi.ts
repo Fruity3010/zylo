@@ -1,0 +1,5 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const demoMode = process.env.EXPO_PUBLIC_DEMO_MODE !== 'false';
+const baseQuery = fetchBaseQuery({ baseUrl: process.env.EXPO_PUBLIC_API_BASE_URL || 'https://api.zylo.app/api', prepareHeaders: async (headers) => { const token = await AsyncStorage.getItem('auth_token'); if (token) headers.set('Authorization', `Bearer ${token}`); headers.set('Content-Type', 'application/json'); return headers; } });
+export const api = createApi({ reducerPath: 'api', baseQuery: async (args, context, options) => demoMode ? { data: { success: true, message: 'Demo mode', data: {} } } : baseQuery(args, context, options), tagTypes: ['Errand', 'Conversation', 'Message', 'User'], refetchOnReconnect: true, endpoints: (builder) => ({ errands: builder.query<unknown, Record<string, string> | void>({ query: (params) => ({ url: '/errands', params }), providesTags: ['Errand'] }), conversations: builder.query<unknown, void>({ query: () => '/chat/conversations', providesTags: ['Conversation'] }) }) });

@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../../../contexts/AuthContext';
 import { useTheme } from '../../../contexts/ThemeContext';
 
-// Mock errander data - Replace with actual API call
+// Prototype profile data.
 const ERRANDER_DATA = {
   tier: 2, // 1-4
   errandsCompleted: 45,

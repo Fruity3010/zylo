@@ -94,14 +94,10 @@ export default function MapLocationSearch({
         ].join(',');
         params.append("viewbox", viewbox);
         // Removed bounded=1 so it only uses viewbox for proximity sorting, not as a hard boundary
-        console.log("MapLocationSearch: Using viewbox for proximity:", viewbox);
-        console.log("MapLocationSearch: mapCenter:", mapCenter);
       } else {
-        console.log("MapLocationSearch: No mapCenter provided");
       }
 
       const fullUrl = `https://nominatim.openstreetmap.org/search?${params.toString()}`;
-      console.log("MapLocationSearch: Full API URL:", fullUrl);
 
       const response = await fetch(fullUrl, {
         headers: {
@@ -115,8 +111,6 @@ export default function MapLocationSearch({
       }
 
       const data = await response.json();
-      console.log("MapLocationSearch: API returned", data.length, "results");
-      console.log("MapLocationSearch: showDropdown is", showDropdown);
       setSuggestions(data);
     } catch (error: any) {
       // Don't log abort errors
@@ -130,7 +124,6 @@ export default function MapLocationSearch({
   };
 
   const handleTextChange = (text: string) => {
-    console.log("MapLocationSearch: Text changed to:", text);
     onChangeText(text);
     setShowDropdown(true);
 
@@ -141,7 +134,6 @@ export default function MapLocationSearch({
 
     // Debounce search by 600ms
     debounceTimeout.current = setTimeout(() => {
-      console.log("MapLocationSearch: Starting search for:", text);
       searchLocation(text);
     }, 600);
   };
@@ -198,7 +190,6 @@ export default function MapLocationSearch({
       </View>
 
       {(() => {
-        console.log("MapLocationSearch RENDER: showDropdown=", showDropdown, "suggestions.length=", suggestions.length);
         return showDropdown && suggestions.length > 0 ? (
           <View style={styles.dropdown}>
             <View style={styles.dropdownHeader}>

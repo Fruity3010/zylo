@@ -20,18 +20,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const router = useRouter();
   const segments = useSegments();
 
-  // Wrapper for setUser that also updates isAuth
   const setUser = (userData: User | null) => {
     setUserState(userData);
-    setIsAuth(!!userData); // Set isAuth to true if user exists, false otherwise
+    setIsAuth(!!userData);
   };
 
-  // Load user on mount
   useEffect(() => {
     loadUser();
   }, []);
 
-  // Handle navigation based on auth state
   useEffect(() => {
     if (loading) return;
 
@@ -39,10 +36,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const inDashboard = segments[0] === 'dashboard';
 
     if (!isAuth && inDashboard) {
-      // Redirect to login if not authenticated and trying to access dashboard
       router.replace('/login');
     } else if (isAuth && (segments[0] === 'login' || segments[0] === 'signup')) {
-      // Redirect to dashboard if authenticated and in login/signup
       router.replace('/dashboard');
     }
   }, [isAuth, segments, loading]);

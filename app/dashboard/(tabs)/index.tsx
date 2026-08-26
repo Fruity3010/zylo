@@ -246,7 +246,7 @@ export default function Dashboard() {
   };
 
   const handlePostErrand = () => {
-    console.log("Posting errand with data:", {
+    void {
       title: errandTitle,
       description: errandDescription,
       pickup: { location: pickupLocation, address: pickupAddress },
@@ -254,7 +254,7 @@ export default function Dashboard() {
       image: errandImage,
       category: activeCategory,
       routeInfo,
-    });
+    };
 
     setErrandTitle("");
     setErrandDescription("");

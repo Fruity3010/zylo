@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     height: 50,
   },
   homeTabItem: {
-    marginTop: -25, // This lifts the home button
+    marginTop: -25,
     width: 60,
     height: 60,
     borderRadius: 30,
@@ -79,6 +79,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   activeTab: {
-    // Add any active tab styles if needed
   },
 });

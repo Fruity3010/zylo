@@ -41,7 +41,6 @@ export default function ChatScreen() {
     setupRealtime();
 
     return () => {
-      // Cleanup subscription on unmount
       if (channelRef.current) {
         unsubscribeFromMessages(channelRef.current);
       }
@@ -59,7 +58,6 @@ export default function ChatScreen() {
 
       if (response.success && response.data) {
         setMessages(response.data.messages);
-        // Mark messages as read
         await markMessagesAsRead(conversationId as string);
       }
     } catch (error) {
@@ -70,16 +68,13 @@ export default function ChatScreen() {
   };
 
   const setupRealtime = () => {
-    // Subscribe to new messages
     channelRef.current = subscribeToMessages(
       conversationId as string,
       (newMessage) => {
         setMessages((prev) => [...prev, newMessage]);
-        // Auto-scroll to bottom
         setTimeout(() => {
           flatListRef.current?.scrollToEnd({ animated: true });
         }, 100);
-        // Mark as read if not sent by current user
         if (newMessage.sender_id !== currentUserId) {
           markMessagesAsRead(conversationId as string);
         }
@@ -99,7 +94,7 @@ export default function ChatScreen() {
 
       if (!response.success) {
         Alert.alert('Error', 'Failed to send message');
-        setInputText(messageText); // Restore text
+        setInputText(messageText);
       }
     } catch (error) {
       console.error('Error sending message:', error);

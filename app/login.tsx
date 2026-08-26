@@ -52,7 +52,6 @@ const LoginPage = () => {
   const handleLogin = async () => {
     if (loading) return;
 
-    // Validation
     if (!form.email || !form.password) {
       Alert.alert("Error", "Please fill in all fields");
       return;
@@ -67,9 +66,7 @@ const LoginPage = () => {
       });
 
       if (response.success && response.data) {
-        // Update auth context with user data
         setUser(response.data.user);
-        // Navigate to dashboard on success
         router.replace("/dashboard");
       } else {
         Alert.alert("Login Failed", response.message || "Invalid credentials");

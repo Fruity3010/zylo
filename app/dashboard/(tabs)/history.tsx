@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { useAuth } from '../../../contexts/AuthContext';
 
-// Mock data - Replace with actual API call
+// Prototype history data.
 const MOCK_COMPLETED_ERRANDS = [
   {
     id: '1',

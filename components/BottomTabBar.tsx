@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter, usePathname } from 'expo-router';
 import { useTheme } from '../contexts/ThemeContext';
+import type { ComponentProps } from 'react';
+type IconName = ComponentProps<typeof Ionicons>['name'];
 
 export default function BottomTabBar() {
   const router = useRouter();
@@ -10,9 +12,9 @@ export default function BottomTabBar() {
   const { colors } = useTheme();
 
   const tabs = [
-    { name: 'Home', path: '/dashboard', icon: 'home', iconOutline: 'home-outline' },
-    { name: 'History', path: '/dashboard/history', icon: 'time', iconOutline: 'time-outline' },
-    { name: 'Account', path: '/dashboard/account', icon: 'person', iconOutline: 'person-outline' },
+    { name: 'Home', path: '/dashboard', icon: 'home' as IconName, iconOutline: 'home-outline' as IconName },
+    { name: 'History', path: '/dashboard/history', icon: 'time' as IconName, iconOutline: 'time-outline' as IconName },
+    { name: 'Account', path: '/dashboard/account', icon: 'person' as IconName, iconOutline: 'person-outline' as IconName },
   ];
 
   return (

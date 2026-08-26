@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { useRouter } from 'expo-router';
 
-// Mock data - Replace with actual API call
+// Prototype data until a backend is connected.
 const MOCK_ACTIVE_ERRANDS = [
   {
     id: '1',

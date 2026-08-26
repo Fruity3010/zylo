@@ -53,7 +53,6 @@ const SignUpPage = () => {
   const handleSignUp = async () => {
     if (loading) return;
 
-    // Validation
     if (!form.name || !form.surname || !form.email || !form.password || !form.confirmPassword) {
       Alert.alert("Error", "Please fill in all required fields");
       return;
@@ -77,12 +76,6 @@ const SignUpPage = () => {
     setLoading(true);
 
     try {
-      console.log('Attempting signup with:', {
-        email: form.email.trim(),
-        full_name: `${form.name} ${form.surname}`.trim(),
-        role: form.role,
-      });
-
       const response = await signup({
         email: form.email.trim(),
         password: form.password,
@@ -90,16 +83,12 @@ const SignUpPage = () => {
         role: form.role,
       });
 
-      console.log('Signup response:', response);
-
       if (response.success && response.data) {
-        // Update auth context with user data
         setUser(response.data.user);
         Alert.alert("Success", "Account created successfully!", [
           { text: "OK", onPress: () => router.replace("/dashboard") }
         ]);
       } else {
-        console.error('Signup failed:', response);
         Alert.alert("Sign Up Failed", response.message || "Could not create account", [
           { text: "OK" }
         ]);

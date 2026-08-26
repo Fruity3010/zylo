@@ -9,6 +9,8 @@ import { FONT_ASSETS } from "../constants/fonts";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AuthProvider } from "../contexts/AuthContext";
 import { ThemeProvider } from "../contexts/ThemeContext";
+import { Provider } from "react-redux";
+import { store } from "../store";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts(FONT_ASSETS);
@@ -29,6 +31,7 @@ export default function RootLayout() {
   }
 
   return (
+    <Provider store={store}>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
@@ -61,5 +64,6 @@ export default function RootLayout() {
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
+    </Provider>
   );
 }

@@ -20,7 +20,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const systemColorScheme = useColorScheme();
   const [theme, setThemeState] = useState<ThemeMode>('auto');
 
-  // Load theme preference from storage
   useEffect(() => {
     const loadTheme = async () => {
       try {
@@ -35,7 +34,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     loadTheme();
   }, []);
 
-  // Set theme and persist to storage
   const setTheme = async (newTheme: ThemeMode) => {
     try {
       setThemeState(newTheme);
@@ -45,7 +43,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   };
 
-  // Determine active color scheme
   const activeColorScheme = theme === 'auto' ? systemColorScheme : theme;
   const isDark = activeColorScheme === 'dark';
   const colors = isDark ? darkColors : lightColors;

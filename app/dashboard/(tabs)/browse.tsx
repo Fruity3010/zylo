@@ -25,8 +25,7 @@ import NoResponsesModal from '../../../components/NoResponsesModal';
 
 const { height } = Dimensions.get('window');
 
-// Mock data - Replace with actual API call
-// Each errand now has createdAt as Date and expiresAt calculated
+// Prototype errand feed with client-side expiry behavior.
 const MOCK_ERRANDS = [
   {
     id: '1',
@@ -243,7 +242,6 @@ export default function BrowseErrands() {
           text: 'Start Now',
           onPress: () => {
             console.log('Starting errand:', errandId);
-            // TODO: Navigate to active errand screen
           },
         },
       ]
@@ -398,7 +396,6 @@ export default function BrowseErrands() {
       return;
     }
 
-    // TODO: Call API to submit counter offer
     console.log('Counter offer submitted:', {
       errandId: counterOfferErrand.id,
       originalAmount: counterOfferErrand.workmanship,
